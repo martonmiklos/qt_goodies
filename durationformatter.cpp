@@ -130,6 +130,7 @@ QString DurationFormatter::doubleDotDuration(qreal duration, DurationFormatter::
             if (i != zeroCount - 1)
                 ret.append(QStringLiteral(":"));
         }
+        return ret;
     }
 
     quint32 durationInMs, remaining;
