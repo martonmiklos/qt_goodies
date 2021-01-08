@@ -25,7 +25,7 @@ QString DurationFormatter::formatDuration(qreal duration, DurationFormatter::Tim
     }
 
     QString ret;
-    quint32 durationInMs, remaining;
+    quint32 durationInMs = 0, remaining = 0;
     switch (inputUnit) {
     case DurationFormatter::Millisec:
         durationInMs = duration;
