@@ -20,12 +20,11 @@ QString DurationFormatter::formatDuration(qreal duration, DurationFormatter::Tim
             return QObject::tr("0 óra");
         case DurationFormatter::Day:
             return QObject::tr("0 nap");
-
         }
     }
 
     QString ret;
-    quint32 durationInMs, remaining;
+    quint64 durationInMs, remaining;
     switch (inputUnit) {
     case DurationFormatter::Millisec:
         durationInMs = duration;
