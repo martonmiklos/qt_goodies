@@ -16,6 +16,9 @@ private slots:
         qreal duration = 3600;
         auto durationStr = DurationFormatter::formatDuration(duration, DurationFormatter::Sec, DurationFormatter::Sec);
         QCOMPARE(durationStr, tr("1 óra"));
+
+        durationStr = DurationFormatter::formatDuration(0xFFFFFFFF, DurationFormatter::Sec, DurationFormatter::Sec);
+        QCOMPARE(durationStr, tr("49710 nap 6 óra 28 perc 15 mp"));
     }
 
     void testDoubleDotFormatter()
