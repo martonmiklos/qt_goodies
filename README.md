@@ -18,3 +18,8 @@ A comfortable constructor is added to being able to trim prefix an trailing stri
 ## QMetaEnumMenu
 
 This template provides similar functionality to the QMetaEnumComboBox just with QMenu: it populates the menu with checkable QActions which acts as radio buttons (only one could be selected).
+
+
+## widgetactions (SpinBox,LineEdit,PushButtonAction)
+
+Widgets which could be added as a QAction to menus
