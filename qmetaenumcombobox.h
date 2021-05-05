@@ -20,7 +20,7 @@ public:
             addItem(metaEnum.valueToKey(metaEnum.value(i)), metaEnum.value(i));
     }
     
-    QMetaEnumComboBox(int leftOffset = -1, int rightOffset = -1, QWidget *parent = nullptr) :
+    QMetaEnumComboBox(int leftOffset = -1, int rightOffset = -1, bool humanize = false, QWidget *parent = nullptr) :
         QComboBox(parent)
     {
         QMetaEnum metaEnum = QMetaEnum::fromType<EnumType>();
@@ -30,7 +30,8 @@ public:
                 text = text.mid(leftOffset);
             if (rightOffset != -1)
                 text = text.mid(0, text.length() - rightOffset);
-
+            if (humanize)
+                text = text.replace('_', ' ');
             addItem(text, metaEnum.value(i));
         }
     }
