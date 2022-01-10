@@ -55,6 +55,11 @@ public:
         setCurrentIndex(findData(static_cast<int>(value)));
     }
 
+    int findEnumValue(EnumType value)
+    {
+        return findData(static_cast<int>(value));
+    }
+
     EnumType currentEnumValue() const
     {
         return static_cast<EnumType>(currentData().toInt());
