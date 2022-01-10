@@ -64,5 +64,10 @@ public:
     {
         return static_cast<EnumType>(currentData().toInt());
     }
+
+    void removeEnumValue(EnumType value)
+    {
+        removeItem(findEnumValue(value));
+    }
 };
 
