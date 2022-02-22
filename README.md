@@ -23,3 +23,16 @@ This template provides similar functionality to the QMetaEnumComboBox just with 
 ## widgetactions (SpinBox,LineEdit,PushButtonAction)
 
 Widgets which could be added as a QAction to menus
+
+## restorable_header_widget
+
+A template class for creating widgets having QHeaderView (QTableView, QTreeView) which has:
+
+* Saveable/restorable: 
+  * Column widths
+  * Column visibility
+  * Column order (drag 'n drop)
+  
+![RestorableHeaderWidget in action](https://raw.githubusercontent.com/martonmiklos/qt_goodies/master/images/restorable_header_widget.png)
+
+![RestorableHeaderWidget drag 'n drop in action](https://raw.githubusercontent.com/martonmiklos/qt_goodies/master/images/restorable_header_widget_drag_n_drop.png)
