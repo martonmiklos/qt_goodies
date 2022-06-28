@@ -36,3 +36,7 @@ A template class for creating widgets having QHeaderView (QTableView, QTreeView)
 ![RestorableHeaderWidget in action](https://raw.githubusercontent.com/martonmiklos/qt_goodies/master/images/restorable_header_widget.png)
 
 ![RestorableHeaderWidget drag 'n drop in action](https://raw.githubusercontent.com/martonmiklos/qt_goodies/master/images/restorable_header_widget_drag_n_drop.png)
+
+## Inflector
+Helping class to lowerFirst,upperFirst, de_underscore and humanize QStrings. 
+Inspired by the [CakePHP's Inflector](https://book.cakephp.org/3/en/core-libraries/inflector.html)
