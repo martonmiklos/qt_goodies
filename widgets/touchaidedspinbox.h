@@ -36,7 +36,7 @@ private slots:
 
 private:
     Ui::TouchAidedSpinBox *ui;
-    int m_minimum, m_maximum, m_value;
+    int m_minimum = 0, m_maximum = 100, m_value = 0;
 
 signals:
     void valueChanged(int value);

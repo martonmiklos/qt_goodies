@@ -45,7 +45,7 @@ public:
                 map[text] = metaEnum.value(i);
             }
 
-            for (const auto key : map.keys()) {
+            for (const auto &key : map.keys()) {
                 auto *action = new QAction(key);
                 action->setCheckable(true);
                 action->setData(map.value(key));
@@ -58,7 +58,7 @@ public:
 
     virtual void setCurrentEnumValue(EnumType value)
     {
-        for (auto *action : m_actions) {
+        for (auto *action : qAsConst(m_actions)) {
             if (action->data().toInt() == value) {
                 action->setChecked(true);
                 break;
@@ -86,7 +86,7 @@ protected slots:
     {
         const auto action = static_cast<QAction*>(sender());
         if (checked) {
-            for (auto *other : m_actions) {
+            for (auto *other : qAsConst(m_actions)) {
                 if (other != action && other->isChecked()) {
                     other->setChecked(false);
                     return;
