@@ -26,7 +26,7 @@ void TouchAidedSpinBox::on_toolButtonDecrease_clicked()
 
 int TouchAidedSpinBox::value() const
 {
-    return m_value;
+    return ui->spinBoxValue->value();
 }
 
 void TouchAidedSpinBox::setValue(int newValue)
@@ -63,6 +63,6 @@ QString TouchAidedSpinBox::suffix() const
 
 void TouchAidedSpinBox::setSuffix(const QString &newSuffix)
 {
-    ui->spinBoxValue->setSuffix(suffix());
+    ui->spinBoxValue->setSuffix(newSuffix);
 }
 
