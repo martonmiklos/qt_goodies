@@ -57,7 +57,7 @@ public:
             action->setChecked(!hidden);
             action->setData(col);
             this->horizontalHeader()->addAction(action);
-            this->connect(action, &QAction::triggered, this, [=](bool checked) {
+            this->connect(action, &QAction::triggered, this, [this, col](bool checked) {
                 this->setColumnHidden(col, !checked);
             });
         }
