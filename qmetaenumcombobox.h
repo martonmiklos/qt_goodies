@@ -25,7 +25,7 @@ public:
             addItem(metaEnum.valueToKey(metaEnum.value(i)), metaEnum.value(i));
     }
     
-    QMetaEnumComboBox(int leftOffset = -1, int rightOffset = -1, SortMode sortMode = Index, bool humanize = false, QWidget *parent = nullptr) :
+    QMetaEnumComboBox(int leftOffset = -1, int rightOffset = -1, SortMode sortMode = Index, bool humanize = false, bool suffixWithValue = false, QWidget *parent = nullptr) :
         QComboBox(parent)
     {
         QMetaEnum metaEnum = QMetaEnum::fromType<EnumType>();
@@ -34,10 +34,16 @@ public:
             QString text = QString(metaEnum.valueToKey(metaEnum.value(i)));
             if (leftOffset != -1)
                 text = text.mid(leftOffset);
+
             if (rightOffset != -1)
                 text = text.mid(0, text.length() - rightOffset);
+
             if (humanize)
                 text = text.replace('_', ' ');
+
+            if (suffixWithValue)
+                text = text.append(QString(" (%1)").arg(metaEnum.value(i)));
+
             if (sortMode == Index)
                 addItem(text, metaEnum.value(i));
             else
@@ -45,8 +51,9 @@ public:
         }
 
         if (sortMode == Name) {
-            for(auto item = items.begin(); item != items.end(); item++)
+            for(auto item = items.begin(); item != items.end(); item++) {
                 addItem(item.key(), item.value());
+            }
         }
     }
 
