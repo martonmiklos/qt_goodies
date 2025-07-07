@@ -58,7 +58,7 @@ public:
 
     virtual void setCurrentEnumValue(EnumType value)
     {
-        for (auto *action : qAsConst(m_actions)) {
+        for (auto *action : std::as_const(m_actions)) {
             if (action->data().toInt() == value) {
                 action->setChecked(true);
                 break;
@@ -86,7 +86,7 @@ protected slots:
     {
         const auto action = static_cast<QAction*>(sender());
         if (checked) {
-            for (auto *other : qAsConst(m_actions)) {
+            for (auto *other : std::as_const(m_actions)) {
                 if (other != action && other->isChecked()) {
                     other->setChecked(false);
                     return;
