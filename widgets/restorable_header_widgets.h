@@ -5,6 +5,7 @@
 #include <QList>
 #include <QWidget>
 #include <QSettings>
+#include <QTreeWidget>
 
 template <class T>
 class RestorableHeaderWidget : public T
@@ -13,13 +14,18 @@ public:
     RestorableHeaderWidget(QWidget *parent) :
         T(parent)
     {
-        this->horizontalHeader()->setContextMenuPolicy(Qt::ActionsContextMenu);
-        this->horizontalHeader()->setSectionsMovable(true);
+    }
+
+    void init(QHeaderView *header)
+    {
+        m_header = header;
+        m_header->setContextMenuPolicy(Qt::ActionsContextMenu);
+        m_header->setSectionsMovable(true);
     }
 
     void saveHeaderSettings(QSettings &settings)
     {
-        settings.setValue("HeaderState", this->horizontalHeader()->saveState());
+        settings.setValue("HeaderState", m_header->saveState());
         settings.beginGroup("ColumnsWidths");
         for (int col = 0; col<this->model()->columnCount(); col++) {
             settings.setValue(QString::number(col), this->columnWidth(col));
@@ -35,7 +41,7 @@ public:
 
     void restoreHeaderSettings(QSettings &settings)
     {
-        this->horizontalHeader()->restoreState(settings.value("HeaderState").toByteArray());
+        m_header->restoreState(settings.value("HeaderState").toByteArray());
         settings.beginGroup("ColumnsWidths");
         for (int col = 0; col<this->model()->columnCount(); col++) {
             int width = settings.value(QString::number(col), 0).toInt();
@@ -56,12 +62,24 @@ public:
             action->setCheckable(true);
             action->setChecked(!hidden);
             action->setData(col);
-            this->horizontalHeader()->addAction(action);
+            m_header->addAction(action);
             this->connect(action, &QAction::triggered, this, [this, col](bool checked) {
                 this->setColumnHidden(col, !checked);
             });
         }
         settings.endGroup();
+    }
+private:
+    QHeaderView *m_header = nullptr; // set this to the header in the constructor
+};
 
+
+class RestorableTreeWidget : public RestorableHeaderWidget<QTreeWidget>
+{
+public:
+    RestorableTreeWidget(QWidget *parent = nullptr) :
+        RestorableHeaderWidget<QTreeWidget>(parent)
+    {
+        init(header());
     }
 };
